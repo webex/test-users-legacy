@@ -114,29 +114,32 @@ function requestWithAuth(options) {
  */
 function create(options) {
   options = options || {};
+  const body = _.defaultsDeep({}, options, {
+    // The four characters on the end are to hit all the password requirements
+    password: `${generateRandomString(10)}zA1*`,
+    displayName: randomName(),
+    clientId: process.env.CISCOSPARK_CLIENT_ID,
+    clientSecret: process.env.CISCOSPARK_CLIENT_SECRET,
+    emailTemplate: options.email || options.emailAddress,
+    // defaultsDeep doesn't seem to handle arrays
+    entitlements: options.entitlements || [
+      `spark`,
+      `squaredCallInitiation`,
+      `squaredRoomModeration`,
+      `squaredInviter`,
+      `webExSquared`
+    ],
+    scopes: options.scope || process.env.CISCOSPARK_SCOPE
+  });
+
   return requestWithAuth({
     method: `POST`,
     uri: BASE_PATH_SECURE,
     json: true,
-    body: _.defaultsDeep(options, {
-      // The four characters on the end are to hit all the password requirements
-      password: `${generateRandomString(10)}zA1*`,
-      displayName: randomName(),
-      clientId: process.env.CISCOSPARK_CLIENT_ID,
-      clientSecret: process.env.CISCOSPARK_CLIENT_SECRET,
-      emailTemplate: options.email || options.emailAddress,
-      entitlements: [
-        `spark`,
-        `squaredCallInitiation`,
-        `squaredRoomModeration`,
-        `squaredInviter`,
-        `webExSquared`
-      ],
-      scopes: options.scope || process.env.CISCOSPARK_CLIENT_SCOPE
-    })
+    body
   })
     .then((res) => Object.assign({
-      password: options.password,
+      password: JSON.parse(res.request.body).password,
       emailAddress: res.body.user.email,
       displayName: res.body.user.name
     }, res.body.user, {token: fixToken(res.body.token)}));

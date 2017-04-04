@@ -110,6 +110,11 @@ describe(`TestUsers`, () => {
         assert.hasAuthorizationCode(u);
       }));
 
+    it(`creates a test user in another org`, () => assert.isFulfilled(TestUsers.create({
+      orgId: `kmsFederation`,
+      entitlements: [`webExSquared`]
+    })));
+
   });
 
   describe(`.login()`, () => {
