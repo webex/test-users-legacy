@@ -37,9 +37,7 @@ assert.isTestUser = (user) => {
   assert.isDefined(user.password, `user.password is defined`);
 };
 
-describe(`TestUsers`, function() {
-  this.timeout(10000);
-
+describe(`TestUsers`, () => {
   const emailAddress = `test-${uuid.v4()}@wx2.example.com`;
   const password = `${uuid.v4()}1@A`;
   const displayName = uuid.v4();

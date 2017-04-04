@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "lodash",
+    "transform-runtime"
+  ],
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions"],
+        "node": "current"
+      }
+    }]
+  ],
+  "sourceMaps": true
+}
