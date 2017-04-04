@@ -61,9 +61,10 @@ function getClientCredentials(options) {
     return Promise.resolve(clientToken);
   }
   const clientId = options.clientId || process.env.CISCOSPARK_CLIENT_ID;
-  assert(clientId);
+  assert(clientId, `options.clientId or process.env.CISCOSPARK_CLIENT_ID must be defined`);
   const clientSecret = options.clientSecret || process.env.CISCOSPARK_CLIENT_SECRET;
-  assert(clientSecret);
+  assert(clientSecret, `options.clientSecret or process.env.CISCOSPARK_CLIENT_SECRET must be defined`);
+
   return request({
     method: `POST`,
     uri: `https://idbroker.webex.com/idb/oauth2/v1/access_token`,
@@ -178,7 +179,7 @@ function remove(options) {
       .then((token) => remove(Object.assign({token}, options)));
   }
 
-  assert(options.token.authorization);
+  assert(options.token.authorization, `options.token.authorization must be defined`);
 
   return request({
     method: `POST`,

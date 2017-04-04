@@ -49,5 +49,10 @@
     "lodash": "^4.17.4",
     "node-random-name": "^1.0.1",
     "request": "^2.81.0"
+  },
+  "browserify": {
+    "transform": [
+      "envify"
+    ]
   }
 }
