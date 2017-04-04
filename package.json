@@ -1,5 +1,5 @@
 {
-  "name": "@ciscospark/test-users",
+  "name": "@ciscospark/test-users-legacy",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
