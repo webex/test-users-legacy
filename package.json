@@ -1,0 +1,32 @@
+{
+  "name": "@ciscospark/test-users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha test/*/spec/**",
+    "posttest": "npm run lint"
+  },
+  "keywords": [],
+  "author": "Ian W. Remmel <iremmel@cisco.com>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@ciscospark/eslint-config": "^0.7.64",
+    "babel-eslint": "^7.2.1",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-mocha": "^4.9.0",
+    "eslint-plugin-react": "^6.10.3",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "btoa": "^1.1.2",
+    "lodash": "^4.17.4",
+    "node-random-name": "^1.0.1",
+    "request": "^2.81.0"
+  }
+}
