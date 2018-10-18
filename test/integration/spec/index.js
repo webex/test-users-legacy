@@ -54,7 +54,7 @@ describe(`TestUsers`, () => {
     assert.hasRefreshToken(user);
     return TestUsers.request({
       method: `POST`,
-      uri: `https://idbroker.webex.com/idb/oauth2/v1/access_token`,
+      uri: `${process.env.IDBROKER_BASE_URL || 'https://idbroker.webex.com'}/idb/oauth2/v1/access_token`,
       form: {
         /* eslint-disable camelcase */
         grant_type: `refresh_token`,

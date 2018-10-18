@@ -1,6 +1,6 @@
 {
   "name": "@ciscospark/test-users-legacy",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -14,7 +14,10 @@
     "test:node": "export NODE_ENV=${NODE_ENV:-test}; mocha --timeout 30000 test/*/spec/**",
     "posttest": "npm run --silent lint"
   },
-  "author": "Ian W. Remmel <iremmel@cisco.com>",
+  "contributors": [
+    "Ian W. Remmel <iremmel@cisco.com>",
+    "Taymoor Khan <taykhan@cisco.com>"
+  ],
   "license": "UNLICENSED",
   "devDependencies": {
     "@ciscospark/eslint-config": "^0.7.64",
