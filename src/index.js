@@ -67,7 +67,7 @@ function getClientCredentials(options) {
 
   return request({
     method: `POST`,
-    uri: `https://idbroker.webex.com/idb/oauth2/v1/access_token`,
+    uri: `${process.env.IDBROKER_BASE_URL || `https://idbroker.webex.com`}/idb/oauth2/v1/access_token`,
     json: true,
     form: {
       grant_type: `client_credentials`,
