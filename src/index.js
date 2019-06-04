@@ -60,10 +60,10 @@ function getClientCredentials(options) {
   if (clientToken) {
     return Promise.resolve(clientToken);
   }
-  const clientId = options.clientId || process.env.CISCOSPARK_CLIENT_ID;
-  assert(clientId, `options.clientId or process.env.CISCOSPARK_CLIENT_ID must be defined`);
-  const clientSecret = options.clientSecret || process.env.CISCOSPARK_CLIENT_SECRET;
-  assert(clientSecret, `options.clientSecret or process.env.CISCOSPARK_CLIENT_SECRET must be defined`);
+  const clientId = options.clientId || process.env.WEBEX_CLIENT_ID || process.env.CISCOSPARK_CLIENT_ID;
+  assert(clientId, `options.clientId, process.env.WEBEX_CLIENT_ID, or process.env.CISCOSPARK_CLIENT_ID must be defined`);
+  const clientSecret = options.clientSecret || process.env.WEBEX_CLIENT_SECRET || process.env.CISCOSPARK_CLIENT_SECRET;
+  assert(clientSecret, `options.clientSecret, process.env.WEBEX_CLIENT_SECRET, or process.env.CISCOSPARK_CLIENT_SECRET must be defined`);
 
   return request({
     method: `POST`,
@@ -118,8 +118,8 @@ function create(options) {
     // The four characters on the end are to hit all the password requirements
     password: `${generateRandomString(10)}zA1*`,
     displayName: randomName(),
-    clientId: process.env.CISCOSPARK_CLIENT_ID,
-    clientSecret: process.env.CISCOSPARK_CLIENT_SECRET,
+    clientId: process.env.WEBEX_CLIENT_ID || process.env.CISCOSPARK_CLIENT_ID,
+    clientSecret: process.env.WEBEX_CLIENT_SECRET || process.env.CISCOSPARK_CLIENT_SECRET,
     emailTemplate: options.email || options.emailAddress,
     // defaultsDeep doesn't seem to handle arrays
     entitlements: options.entitlements || [
@@ -129,7 +129,7 @@ function create(options) {
       `squaredInviter`,
       `webExSquared`
     ],
-    scopes: options.scope || process.env.CISCOSPARK_SCOPE
+    scopes: options.scope || process.env.WEBEX_SCOPE || process.env.CISCOSPARK_SCOPE
   });
 
   return requestWithAuth({
@@ -156,8 +156,8 @@ function login(options) {
     uri: `${BASE_PATH}/login`,
     json: true,
     body: _.defaultsDeep(options, {
-      clientId: process.env.CISCOSPARK_CLIENT_ID,
-      clientSecret: process.env.CISCOSPARK_CLIENT_SECRET
+      clientId: process.env.WEBEX_CLIENT_ID || process.env.CISCOSPARK_CLIENT_ID,
+      clientSecret: process.env.WEBEX_CLIENT_SECRET || process.env.CISCOSPARK_CLIENT_SECRET
     })
   })
     .then((res) => fixToken(res.body));
