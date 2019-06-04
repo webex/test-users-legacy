@@ -58,13 +58,13 @@ describe(`TestUsers`, () => {
       form: {
         /* eslint-disable camelcase */
         grant_type: `refresh_token`,
-        redirect_uri: process.env.CISCOSPARK_REDIRECT_URI,
+        redirect_uri: process.env.WEBEX_REDIRECT_URI || process.env.CISCOSPARK_REDIRECT_URI,
         refresh_token: user.token.refresh_token
         /* eslint-enable */
       },
       auth: {
-        user: process.env.CISCOSPARK_CLIENT_ID,
-        pass: process.env.CISCOSPARK_CLIENT_SECRET
+        user: process.env.WEBEX_CLIENT_ID || process.env.CISCOSPARK_CLIENT_ID,
+        pass: process.env.WEBEX_CLIENT_SECRET || process.env.CISCOSPARK_CLIENT_SECRET
       }
     });
   }
