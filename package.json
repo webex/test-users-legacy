@@ -1,6 +1,6 @@
 {
   "name": "@ciscospark/test-users-legacy",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "posttest": "npm run --silent lint"
   },
   "contributors": [
+    "Adam Weeks <adweeks@cisco.com>",
     "Ian W. Remmel <iremmel@cisco.com>",
     "Taymoor Khan <taykhan@cisco.com>"
   ],
